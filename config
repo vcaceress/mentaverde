@@ -1,0 +1,18 @@
+```nginx
+server {
+    listen 80;
+    server_name mentaverdenails.com;
+    root /ruta/a/tu/app/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Optimización de caché para assets
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+}
+```
